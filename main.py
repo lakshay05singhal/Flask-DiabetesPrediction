@@ -10,6 +10,14 @@ file = open('model', 'rb')
 clf = pickle.load(file)
 file.close()
 
+@app.route('/')
+def home():
+	return render_template('home.html')
+
+@app.route('/know')
+def knowMore():
+	return render_template('diabetes.html')
+
 
 @app.route('/test', methods=["GET", "POST"])
 def test():
