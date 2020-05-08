@@ -1,6 +1,6 @@
 #https://www.youtube.com/watch?v=02eZFXALcl4&t=186s
 
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, url_for
 import pickle
 
 app = Flask(__name__)
@@ -14,7 +14,7 @@ file.close()
 def home():
 	return render_template('home.html')
 
-@app.route('/know')
+@app.route('/diabetes')
 def knowMore():
 	return render_template('diabetes.html')
 
@@ -31,9 +31,8 @@ def test():
 		age = int(myDict['age'])
 		
 		inputFeatures = [pregnancies, glucose, insulin, bmi, age]
-		infProb = clf.predict_proba([inputFeatures])[0][1]
-		print(infProb)
-		return render_template('show.html', inf=round(infProb*100))
+		infProb = clf.predict([inputFeatures])[0]
+		return render_template('show.html', inf=infProb)
 	return render_template('index.html')
 	#return 'Hello, World! ' + str(infProb)
 
