@@ -1,5 +1,3 @@
-#https://www.youtube.com/watch?v=02eZFXALcl4&t=186s
-
 from flask import Flask, render_template, request, url_for
 import pickle
 
